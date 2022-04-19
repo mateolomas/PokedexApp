@@ -15,6 +15,10 @@ import React from 'react';
 import {SvgUri} from 'react-native-svg';
 import {Type} from '../interfaces/IPokemon';
 import {capitalize} from '../helpers/capitalize';
+import {ImageBackground, Dimensions} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 interface Props {
   name: string;
@@ -52,6 +56,15 @@ const PokemonCard = ({name, type, sprite, color}: Props) => {
             ))}
           </Box>
           <Box>
+            <ImageBackground
+              source={require('../assets/pokeball.png')}
+              style={{
+                position: 'absolute',
+                width: 120,
+                height: 120,
+                opacity: 0.1,
+                marginTop: -15,
+              }}></ImageBackground>
             <AspectRatio w="90%">
               <SvgUri width="100%" height="100%" uri={sprite} />
             </AspectRatio>
