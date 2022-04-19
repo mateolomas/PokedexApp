@@ -1,9 +1,9 @@
 import {
   Center,
   Box,
-  Image,
   AspectRatio,
   Text,
+  Image,
   Container,
   Flex,
   Heading,
@@ -11,7 +11,10 @@ import {
   Stack,
 } from 'native-base';
 import React from 'react';
+
+import {SvgUri} from 'react-native-svg';
 import {Type} from '../interfaces/IPokemon';
+import {capitalize} from '../helpers/capitalize';
 
 interface Props {
   name: string;
@@ -23,20 +26,21 @@ interface Props {
 const PokemonCard = ({name, type, sprite, color}: Props) => {
   return (
     <Box padding={1}>
-      <Box w={175} h={140} shadow="4" rounded="lg" bg="primary.400">
+      <Box w={175} h={140} shadow="4" rounded="lg" bg={color}>
         <Text
           color="white"
           fontSize="lg"
           fontWeight={700}
           paddingTop={3}
           paddingLeft={4}>
-          {name}
+          {capitalize(name)}
         </Text>
 
-        <Box flexDirection={'row'} marginLeft={3} w={'100%'}>
+        <Box flexDirection={'row'} marginLeft={3}>
           <Box>
             {type.map((type, index: number) => (
               <Box
+                mb={1}
                 key={index}
                 rounded={'lg'}
                 justifyContent={'center'}
@@ -47,14 +51,9 @@ const PokemonCard = ({name, type, sprite, color}: Props) => {
               </Box>
             ))}
           </Box>
-          <Box ml={0} mt={-3}>
-            <AspectRatio w="100%">
-              <Image
-                source={{uri: sprite}}
-                alt="pokemon"
-                width={125}
-                height={125}
-              />
+          <Box>
+            <AspectRatio w="90%">
+              <SvgUri width="100%" height="100%" uri={sprite} />
             </AspectRatio>
           </Box>
         </Box>
